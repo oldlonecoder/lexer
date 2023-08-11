@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13..3.26 FATAL_ERROR)
 ## Project name
 
-project(iolistener VERSION 0.1.0 LANGUAGES CXX)
+project(lexer VERSION 0.1.0 LANGUAGES CXX)
 
 message("Entering ${PROJECT_NAME} project configuration:")
 
@@ -17,10 +17,8 @@ add_library(
         ${TargetName}
         SHARED
         include/${TargetName}/public.h                 #global framework-wide macros definitions and dll export and import macros for MSVC.
-        include/${TargetName}/ifd.h               src/ifd.cc
-        include/${TargetName}/console_io.h               src/console_io.cc
-        include/${TargetName}/listener.h               src/listener.cc
-        include/${TargetName}/tcp_socket.h               src/tcp_socket.cc
+        include/${TargetName}/lexer.h                src/lexer.cc
+        include/${TargetName}/lexer_color.h          src/lexer_color.cc
 )
 
 
