@@ -290,7 +290,11 @@ lexer::num_scanner::operator bool() const
  * @brief Computes the numeric scale and 'best guess' base.
  * @return one [combined] of {{u,i}{8,16,32,64}} | fp| oct | hex | bin.
  *
- * @note Numeric Base is omitted as of this version. Thus it only computes the Scale.
+ * @note Numeric Base and sign are omitted as of this version.
+ *       Thus it only computes the Scale as unsigned integers.
+ *
+ * //std::array<xio::type::T, 4> Capacity = {xio::type::U8, xio::type::U16, xio::type::U32, xio::type::U64};
+ * //xio::type::T                atoken   = Capacity[I];
  */
 xio::type::T lexer::num_scanner::operator()() const
 {
@@ -300,12 +304,10 @@ xio::type::T lexer::num_scanner::operator()() const
         stracc Str = std::string(temp, 0, E-B);
         uint64_t D;
         Str >> D;
-        uint64_t I = 0;
+        int scale = 0;
         std::array<uint64_t, 3> R = {0x100, 0x10000, 0x100000000};
-        while(D >= R[I]) ++I;
-        std::array<xio::type::T, 4> Capacity = {xio::type::U8, xio::type::U16, xio::type::U32, xio::type::U64};
-        xio::type::T                atoken   = Capacity[I];
-        return atoken;
+        while(D >= R[scale]) ++scale;
+        return std::array<xio::type::T, 4>{xio::type::U8, xio::type::U16, xio::type::U32, xio::type::U64}[scale];
     }
 
     return xio::type::Float;
