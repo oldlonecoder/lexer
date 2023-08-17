@@ -39,7 +39,7 @@ target_include_directories(${TargetName} PUBLIC
         $<INSTALL_INTERFACE:include/${TargetName}>
         )
 
-target_link_libraries(${TargetName} ${CMAKE_DL_LIBS} logbook) # and normally logbook depends on chrtools
+target_link_libraries(${TargetName} ${CMAKE_DL_LIBS} logbook xio) # and normally logbook depends on chrtools
 
 
 install(DIRECTORY
@@ -63,3 +63,5 @@ add_custom_command(
     COMMAND xargs rm -vf < install_manifest.txt || echo Nothing in
             install_manifest.txt to be uninstalled!
 )
+
+add_subdirectory(test)

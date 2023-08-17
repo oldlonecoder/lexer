@@ -31,6 +31,7 @@ public:
 
 
     rem::code operator << (const std::string& aSource);
+    rem::code process (const std::string& src, xio::token_data::collection const& tokens);
     std::string Product() {
         return _product_data;
     }

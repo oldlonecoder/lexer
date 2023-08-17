@@ -185,6 +185,28 @@ rem::code lexer_color::operator<<(const std::string& aSource)
     return rem::ok;
 }
 
+rem::code lexer_color::process(const std::string& src, xio::token_data::collection const & tokens)
+{
+    std::string _color;
+    _product_data = src;
+    size_t Spacing = 0, // Current color String::Length();
+           Offset = 0; // Cummulative ( Offset += Spacing )
+
+    for (auto const& Token : tokens)
+    {
+        _color.clear();
+        _color = attr<chattr::format::ansi256>::fg(lexer_color::affine_db[Token.c]);
+        Spacing = _color.length();
+        if (!_color.empty())
+        {
+            _product_data.insert(Token.mLoc.offset + Offset, _color);
+            Offset += Spacing;
+        }
+
+    }
+    return rem::ok;
+}
+
 std::string lexer_color::mark(xio::token_data& token)
 {
 
