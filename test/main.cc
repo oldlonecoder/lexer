@@ -6,7 +6,7 @@ auto main(int argc, char** argv) -> int
 {
     xio::token_data::collection tokens;
 
-    std::string code = "arc = 5 * 4ac(3 + 2b);";
+    std::string code = "result= 5 * 4ac(3 + 2b);";
     lexer lex;
     lex.config() =
     {
