@@ -26,7 +26,7 @@ auto main(int argc, char** argv) -> int
     }
 
     lexer_color lc;
-    R = lc.process(code,tokens);
+    R = lc << lex.config();
     // for now ignore R
     std::cout << lc.Product() << '\n';
     book::rem::clear(nullptr);

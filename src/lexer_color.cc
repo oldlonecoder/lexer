@@ -1,6 +1,7 @@
 #include "lexer/lexer_color.h"
 #include "lexer/lexer.h"
 
+
     //Normal Types:
     std::map<xio::type::T, color::type> lexer_color::Types =
     {
@@ -187,7 +188,33 @@ rem::code lexer_color::operator<<(const std::string& aSource)
     return rem::ok;
 }
 
-rem::code lexer_color::process(const std::string& src, xio::token_data::collection const & tokens)
+rem::code lexer_color::operator<<(const lexer::config_data &cfg)
+{
+    std::string _color;
+    _product_data = cfg.Source;
+
+    size_t Spacing = 0, // Current color String::Length();
+           Offset = 0; // Cummulative ( Offset += Spacing )
+
+    for (auto const& Token : *cfg.Tokens)
+    {
+        _color.clear();
+        _color = Token.c == xio::mnemonic::Noop ? attr<chattr::format::ansi256>::fg(lexer_color::Types[Token.t]) :
+            _color = attr<chattr::format::ansi256>::fg(lexer_color::affine_db[Token.c]);
+
+        Spacing = _color.length();
+        if (!_color.empty())
+        {
+            _product_data.insert(Token.mLoc.offset + Offset, _color);
+            Offset += Spacing;
+        }
+    }
+    return rem::ok;
+    return rem::accepted;
+}
+
+
+rem::code lexer_color::process(const std::string &src, xio::token_data::collection const &tokens)
 {
     std::string _color;
     _product_data = src;

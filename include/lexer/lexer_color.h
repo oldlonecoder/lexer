@@ -31,11 +31,14 @@ public:
 
 
     rem::code operator << (const std::string& aSource);
+    rem::code operator << (const lexer::config_data& cfg);
+
     rem::code process (const std::string& src, xio::token_data::collection const& tokens);
     std::string Product() {
         return _product_data;
     }
     std::string mark(xio::token_data& token);
+
 
 private:
     //...
