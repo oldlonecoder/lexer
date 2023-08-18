@@ -51,7 +51,7 @@ lexer_color::affine_set lexer_color::affine_db =
     {xio::mnemonic::NotEqual,                color::LighcoreateBlue},
     {xio::mnemonic::Add,                      color::DarkOrange3},
     {xio::mnemonic::Sub,                      color::DarkOrange3},
-    {xio::mnemonic::Mul,                      color::DeepSkyBlue7},
+    {xio::mnemonic::Mul,                      color::LighcoreateBlue},
     {xio::mnemonic::Indirection,              color::White},
     {xio::mnemonic::CommentCpp,              color::White},
     {xio::mnemonic::Modulo,                   color::LighcoreateBlue},
@@ -174,7 +174,9 @@ rem::code lexer_color::operator<<(const std::string& aSource)
     for (auto const& Token : tokens)
     {
         _color.clear();
-        _color = attr<chattr::format::ansi256>::fg(lexer_color::affine_db[Token.c]);
+        _color = Token.c == xio::mnemonic::Noop ? attr<chattr::format::ansi256>::fg(lexer_color::Types[Token.t]) :
+            _color = attr<chattr::format::ansi256>::fg(lexer_color::affine_db[Token.c]);
+
         Spacing = _color.length();
         if (!_color.empty())
         {
@@ -195,14 +197,15 @@ rem::code lexer_color::process(const std::string& src, xio::token_data::collecti
     for (auto const& Token : tokens)
     {
         _color.clear();
-        _color = attr<chattr::format::ansi256>::fg(lexer_color::affine_db[Token.c]);
+        _color = Token.c == xio::mnemonic::Noop ? attr<chattr::format::ansi256>::fg(lexer_color::Types[Token.t]) :
+            _color = attr<chattr::format::ansi256>::fg(lexer_color::affine_db[Token.c]);
+
         Spacing = _color.length();
         if (!_color.empty())
         {
             _product_data.insert(Token.mLoc.offset + Offset, _color);
             Offset += Spacing;
         }
-
     }
     return rem::ok;
 }
