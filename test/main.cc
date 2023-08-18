@@ -15,20 +15,22 @@ auto main(int argc, char** argv) -> int
     };
 
     auto R = lex();
-    if(!R == book::rem::accepted)
+    if(R != book::rem::accepted)
     {
         std::cout << "lexer failed. See error descriptions in the book logs.\n";
         return -1;
     }
-    for(auto t : tokens)
+    for(auto const& t : tokens)
     {
         std::cout << t.details() << '\n';
     }
 
     lexer_color lc;
-    R = lc << lex.config();
+    /*R =*/ lc << lex.config();
     // for now ignore R
     std::cout << lc.Product() << '\n';
+    std::cout << lc.mark(tokens[5]) << '\n';
+    
     book::rem::clear(nullptr);
 
     return 0;
