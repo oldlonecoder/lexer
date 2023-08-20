@@ -14,6 +14,7 @@
 
 #include <logbook/expect.h>
 #include <xio/tokendata.h>
+#include <lexer/public.h>
 
 using book::rem;
 
@@ -24,7 +25,7 @@ using book::rem;
  *
  * @note Re-write of my lexical scanners; offset shall dissociate lexer from Lsc::String and only use std::string.
  */
-class lexer
+class LEXER_PUBLIC lexer
 {
     struct internal_cursor
     {
@@ -86,7 +87,7 @@ class lexer
     };
 
 public:
-    struct config_data
+    struct LEXER_PUBLIC config_data
     {
         const char *Source  = nullptr;
         xio::token_data::collection *Tokens = nullptr;

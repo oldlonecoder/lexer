@@ -10,7 +10,7 @@
 /*!
     @note important! Make two phases : ph.1: Mnemonic; ph.2: Semantic Context & Primary Type.
 */
-class  lexer_color
+class  LEXER_PUBLIC lexer_color
 {
     xio::token_data::collection tokens;
     chattr::format _formatormat = chattr::format::ansi256; ///< Not used yet
