@@ -20,17 +20,20 @@ auto main(int argc, char** argv) -> int
         std::cout << "lexer failed. See error descriptions in the book logs.\n";
         return -1;
     }
+
+
     for(auto const& t : tokens)
     {
-        std::cout << t.details() << '\n';
+        std::cout << t.details(true) << '\n';
     }
 
     lexer_color lc;
-    /*R =*/ lc << lex.config();
-    // for now ignore R
-    std::cout << lc.Product() << '\n';
-    std::cout << lc.mark(tokens[5]) << '\n';
-    
+    lc << lex.config();
+    // for now ignore lc rem::code return value
+    rem::push_message(HERE) << "Lexer & lexer_color tests results:";
+    rem::out() << lc.Product() << '\n';
+    rem::out() << lc.mark(tokens[5]) << '\n';
+
     book::rem::clear(nullptr);
 
     return 0;
