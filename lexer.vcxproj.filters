@@ -24,18 +24,12 @@
     <ClInclude Include="include\lexer\public.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="include\lexer\liblexer.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\lexer.cc">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="src\lexer_color.cc">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="src\liblexer.cc">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>

@@ -111,7 +111,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(HOMEDRIVE)$(HOMEPATH)\libraries\binaries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>chrtools.lib;logbook.lib;xio.lib;dllibcc.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>chrtools.lib;logbook.lib;xio.lib;lexer.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PreBuildEvent>
       <Command>xcopy  $(TargetDir)\lexer.dll $(HOMEDRIVE)$(HOMEPATH)\libraries\binaries    /Y
