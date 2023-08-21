@@ -111,7 +111,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(HOMEDRIVE)$(HOMEPATH)\libraries\binaries</AdditionalLibraryDirectories>
-      <AdditionalDependencies>chrtools.lib;logbook.lib;xio.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>chrtools.lib;logbook.lib;xio.lib;dllibcc.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>xcopy  $(TargetDir)\$(ProjectName).dll $(HOMEDRIVE)$(HOMEPATH)\libraries\binaries    /Y
@@ -139,11 +139,13 @@ xcopy $(SolutionDir)include $(HOMEDRIVE)$(HOMEPATH)\libraries\include   /Y  /I  
   <ItemGroup>
     <ClInclude Include="include\lexer\lexer.h" />
     <ClInclude Include="include\lexer\lexer_color.h" />
+    <ClInclude Include="include\lexer\liblexer.h" />
     <ClInclude Include="include\lexer\public.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\lexer.cc" />
     <ClCompile Include="src\lexer_color.cc" />
+    <ClCompile Include="src\liblexer.cc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
